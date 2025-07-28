@@ -162,12 +162,23 @@ pdf-processor/
 
 **Build Command:**
 ```bash
-docker build --platform linux/amd64 -t <reponame.someidentifier> .
+docker build --platform linux/amd64 -t pdf-processor .
 ```
 
 **Run Command:**
 ```bash
-docker run --rm -v $(pwd)/input:/app/input:ro -v $(pwd)/output/repoidentifier/:/app/output --network none <reponame.someidentifier>
+docker run --rm -v $(pwd)/input:/app/input:ro -v $(pwd)/output:/app/output --network none pdf-processor
+```
+
+**Quick Setup:**
+```bash
+# Create directories and add your PDFs
+mkdir -p input output
+cp /path/to/your/*.pdf input/
+
+# Build and run
+docker build --platform linux/amd64 -t pdf-processor .
+docker run --rm -v $(pwd)/input:/app/input:ro -v $(pwd)/output:/app/output --network none pdf-processor
 ```
 
 ### Key Features for Evaluation
