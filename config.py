@@ -10,8 +10,8 @@ class Config:
     """Configuration class for PDF processing system."""
     
     # Directory paths
-    INPUT_DIR = os.getenv("INPUT_DIR", "./input")
-    OUTPUT_DIR = os.getenv("OUTPUT_DIR", "./output")
+    INPUT_DIR = os.getenv("INPUT_DIR", "/app/input")
+    OUTPUT_DIR = os.getenv("OUTPUT_DIR", "/app/output")
     
     # Performance settings
     MAX_WORKERS = int(os.getenv("MAX_WORKERS", "4"))  # Thread pool size
