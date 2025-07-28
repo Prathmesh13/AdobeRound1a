@@ -9,9 +9,11 @@ from pathlib import Path
 class Config:
     """Configuration class for PDF processing system."""
     
-    # Directory paths
-    INPUT_DIR = os.getenv("INPUT_DIR", "/app/input")
-    OUTPUT_DIR = os.getenv("OUTPUT_DIR", "/app/output")
+    # Directory paths - use local directories in Replit, Docker paths in containers
+    default_input = "./input" if os.path.exists(".replit") else "/app/input"
+    default_output = "./output" if os.path.exists(".replit") else "/app/output"
+    INPUT_DIR = os.getenv("INPUT_DIR", default_input)
+    OUTPUT_DIR = os.getenv("OUTPUT_DIR", default_output)
     
     # Performance settings
     MAX_WORKERS = int(os.getenv("MAX_WORKERS", "4"))  # Thread pool size
