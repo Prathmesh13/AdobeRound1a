@@ -1,0 +1,37 @@
+modules = ["python-3.11"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["freetype", "gumbo", "harfbuzz", "jbig2dec", "libjpeg_turbo", "mupdf", "openjpeg", "swig", "xcbuild"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "PDF Processing System"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "pdf_processor_setup"
+
+[[workflows.workflow]]
+name = "PDF Processing System"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "mkdir -p input output && python process_pdfs.py"
+
+[[workflows.workflow]]
+name = "pdf_processor_setup"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pip install PyMuPDF && mkdir -p /app/input /app/output && echo \"Setup complete - dependencies installed and directories created\""
