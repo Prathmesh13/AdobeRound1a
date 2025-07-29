@@ -84,8 +84,8 @@ docker build --platform linux/amd64 -t pdf-processor .
 
 # Test with sample dataset
 docker run --rm \
-  -v $(pwd)/sample_dataset/pdfs:/app/input:ro \
-  -v $(pwd)/sample_dataset/outputs:/app/output \
+  -v $(pwd)/input:/app/input:ro \
+  -v $(pwd)/output:/app/output \
   --network none \
   pdf-processor
 ```
